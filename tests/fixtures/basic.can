@@ -1,0 +1,36 @@
+includes
+{
+  #include "common.cin"
+}
+
+#define HEARTBEAT_MS 100
+
+variables
+{
+  msTimer tHeartbeat;
+  message 0x123 TxMsg;
+  int gCounter = 0;
+  enum State { Idle, Running };
+  enum State gState = Idle;
+}
+
+void helper(int value)
+{
+  gCounter = value;
+}
+
+on start
+{
+  setTimer(tHeartbeat, HEARTBEAT_MS);
+}
+
+on timer tHeartbeat
+{
+  helper(gCounter + 1);
+}
+
+testcase SmokeTest()
+{
+  testStep("smoke", "ran");
+}
+
