@@ -1,4 +1,5 @@
 target/
+HANDOFF.md
 *.log
 .idea/
 .vscode/
